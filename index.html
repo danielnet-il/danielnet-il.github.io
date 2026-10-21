@@ -106,6 +106,13 @@ section{padding:72px 0}
 .work .status{display:inline-block;background:var(--cable);color:#16201D;font-weight:600;font-size:.95rem;padding:2px 12px;border-radius:999px;margin-bottom:12px}
 .work h3{font-size:1.6rem;margin-bottom:10px}
 .work p{margin:0;color:var(--muted)}
+.works{display:grid;gap:20px;max-width:820px}
+.work .status.live{background:var(--wa);color:var(--wa-ink)}
+.flow{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.flow li{display:flex;align-items:center;gap:8px;font-weight:600;font-size:.98rem}
+.flow li span{padding:6px 14px;border-radius:999px;border:2px solid var(--ink);background:var(--ground)}
+.flow li:not(:last-child)::after{content:"";width:18px;height:3px;border-radius:2px;background:var(--cable)}
+.tools{margin:16px 0 0;color:var(--muted);font-size:.95rem}
 .work .shot{aspect-ratio:4/3;border-radius:14px;background:var(--ground);border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;color:var(--muted);text-align:center;padding:16px;font-size:.95rem}
 
 .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;counter-reset:s}
@@ -250,6 +257,22 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:.95rem;display:flex;just
 
     <section id="work" aria-labelledby="work-title">
       <h2 id="work-title" class="section-title">עבודות</h2>
+      <div class="works">
+      <article class="work">
+        <div>
+          <span class="status live">פועל</span>
+          <h3>מערכת אוטומטית להפקת סרטונים</h3>
+          <p>מערכת שמוצאת נושאים חמים, כותבת תסריט עם AI, מפיקה סרטון עם אווטאר דיגיטלי, בודקת את האיכות ומפרסמת ביוטיוב ובטיקטוק. הכול אוטומטי, עם אישור בטלגרם בשלבים החשובים.</p>
+          <ol class="flow" aria-label="שלבי המערכת">
+            <li><span>רעיון</span></li>
+            <li><span>תסריט</span></li>
+            <li><span>בדיקה</span></li>
+            <li><span>וידאו</span></li>
+            <li><span>פרסום</span></li>
+          </ol>
+          <p class="tools">נבנתה עם Make, סוכני AI, HeyGen ו-Telegram.</p>
+        </div>
+      </article>
       <article class="work">
         <div>
           <span class="status">בעבודה עכשיו</span>
@@ -257,6 +280,7 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:.95rem;display:flex;just
           <p>חנות לחולצות, ספלים ומוצרים מודפסים, עם תצוגה מקדימה של העיצוב על המוצר, סליקה מאובטחת ונגישות מלאה.</p>
         </div>
       </article>
+      </div>
     </section>
 
     <section id="how" aria-labelledby="how-title">
