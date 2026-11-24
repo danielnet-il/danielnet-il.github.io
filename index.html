@@ -7,31 +7,36 @@
 <meta name="description" content="דניאל – בניית אתרים, דפי נחיתה וחנויות מקוונות, ועוזרי AI ואוטומציות לעסקים.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@400;500;600&family=Secular+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@400;500;600&family=Karantina:wght@400;700&display=swap" rel="stylesheet">
 <style>
+/* Concept: a patch panel. Every service is a colour-coded cable plugged into the same panel.
+   The colours repeat down the page (services, steps) so the page reads as one wired system. */
 :root{
-  --ground:#F1F3EF;
+  --ground:#ECEDE8;
   --surface:#FFFFFF;
-  --ink:#16201D;
-  --muted:#4A5551;
-  --line:#C9CFCA;
-  --link:#1B47C9;
-  --cable:#E9B824;
-  --wa:#167A42;
-  --wa-ink:#FFFFFF;
+  --ink:#0E1A2B;
+  --muted:#46525F;
+  --line:#C5CAD0;
+  --blue:#1F4FFF;
+  --yellow:#FFC21A;
+  --orange:#FF6A2B;
+  --green:#27C26A;
+  --link:#1F4FFF;
+  --focus:#FF6A2B;
+  --port:#1B2A41;
+  --port-hole:#060D18;
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){
   :root{
-    --ground:#121816;
-    --surface:#1A2220;
-    --ink:#E8EDEA;
-    --muted:#A9B4AF;
-    --line:#34403C;
-    --link:#8FB0FF;
-    --cable:#E9B824;
-    --wa:#1F9D57;
-    --wa-ink:#06140C;
+    --ground:#0A111D;
+    --surface:#121C2E;
+    --ink:#EEF1F6;
+    --muted:#A6B1BF;
+    --line:#2A3850;
+    --link:#8CA6FF;
+    --port:#22334F;
+    --port-hole:#040910;
     color-scheme:dark;
   }
 }
@@ -41,107 +46,138 @@ body{
   margin:0;background:var(--ground);color:var(--ink);
   font-family:"IBM Plex Sans Hebrew","Segoe UI",Arial,sans-serif;
   font-size:1.0625rem;line-height:1.7;
+  -webkit-font-smoothing:antialiased;
 }
 a{color:var(--link)}
-a:focus-visible,button:focus-visible{outline:3px solid var(--cable);outline-offset:3px;border-radius:4px}
-h1,h2,h3{font-family:"Secular One","IBM Plex Sans Hebrew",Arial,sans-serif;font-weight:400;line-height:1.15;margin:0}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-.skip{position:absolute;right:16px;top:-60px;background:var(--ink);color:var(--ground);padding:10px 16px;border-radius:8px;z-index:10;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:Karantina,"IBM Plex Sans Hebrew",Arial,sans-serif;font-weight:700;line-height:.95;margin:0;letter-spacing:0}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:24px}
+.skip{position:absolute;right:16px;top:-60px;background:var(--ink);color:var(--ground);padding:10px 16px;border-radius:8px;z-index:30;text-decoration:none}
 .skip:focus{top:12px}
 
 /* header */
-.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0;flex-wrap:wrap}
-.brand{font-family:"Secular One",Arial,sans-serif;font-size:1.5rem;color:var(--ink);text-decoration:none}
-.top nav{display:flex;gap:24px;flex-wrap:wrap}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:22px;flex-wrap:wrap}
+.brand{font-family:Karantina,Arial,sans-serif;font-weight:700;font-size:2.2rem;line-height:1;color:var(--ink);text-decoration:none}
+.top nav{display:flex;gap:26px;flex-wrap:wrap}
 .top nav a{color:var(--ink);text-decoration:none;font-weight:500}
-.top nav a:hover{text-decoration:underline;text-underline-offset:6px}
+.top nav a:hover{text-decoration:underline;text-decoration-color:var(--orange);text-decoration-thickness:3px;text-underline-offset:7px}
 
 /* hero */
-.hero{padding:48px 0 24px}
-.hero h1{font-size:clamp(2.6rem,7vw,5.2rem);max-width:14ch}
-.hero p{font-size:1.25rem;color:var(--muted);max-width:46ch;margin:20px 0 28px}
+.hero{padding-block:36px 0}
+.hero h1{display:flex;flex-direction:column;gap:6px}
+.hero h1 .big{font-size:clamp(5.5rem,22vw,14rem);line-height:.8}
+.hero h1 .sub{font-size:clamp(2.2rem,7vw,4.6rem);line-height:1}
+.hero p.lead{font-size:1.25rem;color:var(--muted);max-width:44ch;margin:24px 0 28px}
 .actions{display:flex;gap:12px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;font-weight:600;text-decoration:none;font-size:1.0625rem}
-.btn-wa{background:var(--wa);color:var(--wa-ink)}
-.btn-wa:hover{filter:brightness(1.08)}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:54px;padding-inline:26px;border-radius:999px;font-weight:600;text-decoration:none;font-size:1.0625rem;transition:transform .15s ease,background-color .15s ease,color .15s ease}
+.btn-wa{background:var(--green);color:#06210F}
+.btn-wa:hover{transform:translateY(-2px)}
 .btn-ghost{border:2px solid var(--ink);color:var(--ink)}
 .btn-ghost:hover{background:var(--ink);color:var(--ground)}
 
-/* the cable */
-.topology{margin:40px 0 0;width:100%;height:auto;display:block}
-.topology .cable{fill:none;stroke:var(--cable);stroke-width:5;stroke-linecap:round;stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 1.8s .3s ease-out forwards}
-.topology .node{fill:var(--surface);stroke:var(--ink);stroke-width:2.5}
-.topology .glyph{fill:none;stroke:var(--ink);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.topology text{fill:var(--ink);font-family:"IBM Plex Sans Hebrew",Arial,sans-serif;font-size:17px;font-weight:600}
+/* the patch panel */
+.panel-wrap{margin-top:44px}
+.panel{display:block;width:100%;height:auto}
+.panel .rack{fill:var(--port)}
+.panel .hole{fill:var(--port-hole)}
+.panel .screw{fill:var(--ground)}
+.panel .cable{fill:none;stroke-width:9;stroke-linecap:round;stroke-dasharray:420;stroke-dashoffset:420;animation:draw .9s ease-out forwards}
+.panel .c1{stroke:var(--blue);animation-delay:.2s}
+.panel .c2{stroke:var(--yellow);animation-delay:.45s}
+.panel .c3{stroke:var(--orange);animation-delay:.7s}
+.panel .c4{stroke:var(--green);animation-delay:.95s}
+.panel .plug{opacity:0;animation:plug .25s ease-out forwards}
+.panel .p1{fill:var(--blue);animation-delay:1.0s}
+.panel .p2{fill:var(--yellow);animation-delay:1.25s}
+.panel .p3{fill:var(--orange);animation-delay:1.5s}
+.panel .p4{fill:var(--green);animation-delay:1.75s}
+.panel .tag{opacity:0;animation:plug .3s ease-out forwards}
+.panel .t1{animation-delay:.1s}.panel .t2{animation-delay:.35s}.panel .t3{animation-delay:.6s}.panel .t4{animation-delay:.85s}
+.panel .tag-label{font-family:"IBM Plex Sans Hebrew",Arial,sans-serif;font-size:21px;font-weight:600;text-anchor:middle}
 @keyframes draw{to{stroke-dashoffset:0}}
+@keyframes plug{to{opacity:1}}
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
-  .topology .cable{animation:none;stroke-dashoffset:0}
+  .panel .cable{animation:none;stroke-dashoffset:0}
+  .panel .plug,.panel .tag{animation:none;opacity:1}
+  .btn{transition:none}
 }
 
 /* sections */
-section{padding:72px 0}
-.section-title{font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:28px}
+section{padding-block:88px 0}
+.section-title{font-size:clamp(3rem,8vw,5.5rem);margin-bottom:32px}
 
-.services{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:5px solid var(--cable)}
-.service{padding:32px 0 8px}
-.service:first-child{padding-left:40px;border-left:1px solid var(--line)}
-.service:last-child{padding-right:40px}
-.service h3{font-size:1.75rem;margin-bottom:8px}
-.service .lead{color:var(--muted);margin:0 0 18px}
+/* services: two coloured panels */
+.services{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.service{border-radius:28px;padding:40px 36px 28px}
+.service.web{background:var(--blue);color:#fff}
+.service.ai{background:var(--yellow);color:#0E1A2B}
+.service h3{font-size:clamp(3rem,6vw,4.4rem);margin-bottom:10px}
+.service .lead{margin:0 0 24px;opacity:.92;font-size:1.1rem}
 .service ul{margin:0;padding:0;list-style:none}
-.service li{padding:12px 0;border-bottom:1px solid var(--line)}
-.service li:last-child{border-bottom:none}
-.service li strong{display:block;font-weight:600}
-.service li span{color:var(--muted);font-size:1rem}
+.service li{padding:14px 0;border-top:1px solid currentColor;border-top-color:rgba(255,255,255,.35)}
+.service.ai li{border-top-color:rgba(14,26,43,.3)}
+.service li strong{display:block;font-weight:600;font-size:1.1rem}
+.service li span{opacity:.92;font-size:1rem}
 
-.about{display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:start}
-.about .intro{font-size:1.35rem;line-height:1.6;margin:0}
-.about dl{margin:0;display:grid;gap:0}
-.about dt{font-weight:600;padding-top:16px}
-.about dd{margin:0;padding-bottom:16px;border-bottom:1px solid var(--line);color:var(--muted)}
+/* about */
+.about{display:grid;grid-template-columns:1fr 1.3fr;gap:56px;align-items:start}
+.about .intro{font-size:1.5rem;font-weight:500;line-height:1.55;margin:0;max-width:24em}
+.about dl{margin:0}
+.about dt{font-weight:600;padding-top:18px}
+.about dd{margin:0;padding-bottom:18px;border-bottom:1px solid var(--line);color:var(--muted)}
 .about dd:last-child{border-bottom:none}
 
-.work{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:32px;display:grid;grid-template-columns:1fr;gap:32px;align-items:center;max-width:720px}
-.work .status{display:inline-block;background:var(--cable);color:#16201D;font-weight:600;font-size:.95rem;padding:2px 12px;border-radius:999px;margin-bottom:12px}
-.work h3{font-size:1.6rem;margin-bottom:10px}
-.work p{margin:0;color:var(--muted)}
-.works{display:grid;gap:20px;max-width:820px}
-.work .status.live{background:var(--wa);color:var(--wa-ink)}
-.flow{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
-.flow li{display:flex;align-items:center;gap:8px;font-weight:600;font-size:.98rem}
-.flow li span{padding:6px 14px;border-radius:999px;border:2px solid var(--ink);background:var(--ground)}
-.flow li:not(:last-child)::after{content:"";width:18px;height:3px;border-radius:2px;background:var(--cable)}
-.tools{margin:16px 0 0;color:var(--muted);font-size:.95rem}
-.work .shot{aspect-ratio:4/3;border-radius:14px;background:var(--ground);border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;color:var(--muted);text-align:center;padding:16px;font-size:.95rem}
+/* work */
+.works{border-top:3px solid var(--ink)}
+.work{padding-block:40px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.4fr);gap:16px 56px}
+.work h3{font-size:clamp(2.6rem,5.5vw,4rem);margin-top:14px}
+.work p{margin:0;color:var(--muted);max-width:60ch;font-size:1.1rem}
+.status{display:inline-block;background:var(--yellow);color:#0E1A2B;font-weight:600;font-size:.92rem;padding:2px 14px;border-radius:999px}
+.status.live{background:var(--green);color:#06210F}
+.flow{list-style:none;margin:28px 0 0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:10px 0}
+.flow li{display:flex;align-items:center;font-weight:600;font-size:1rem}
+.flow li span{padding:8px 16px;border-radius:10px;background:var(--surface);border:2px solid var(--ink);border-inline-start-width:8px}
+.flow li:nth-child(1) span{border-inline-start-color:var(--blue)}
+.flow li:nth-child(2) span{border-inline-start-color:var(--yellow)}
+.flow li:nth-child(3) span{border-inline-start-color:var(--orange)}
+.flow li:nth-child(4) span{border-inline-start-color:var(--green)}
+.flow li:nth-child(5) span{border-inline-start-color:var(--blue)}
+.flow li:not(:last-child)::after{content:"";width:18px;height:6px;background:var(--ink);opacity:.85}
+.tools{margin:18px 0 0;color:var(--muted);font-size:.95rem!important}
 
+/* steps: a real sequence */
 .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;counter-reset:s}
-.steps li{counter-increment:s;padding-top:16px;border-top:2px solid var(--ink)}
-.steps li::before{content:counter(s);font-family:"Secular One",Arial,sans-serif;font-size:2.2rem;line-height:1;display:block;margin-bottom:10px}
-.steps h3{font-size:1.25rem;margin-bottom:6px}
+.steps li{counter-increment:s;padding-top:18px;border-top:8px solid var(--blue);border-radius:4px 4px 0 0}
+.steps li:nth-child(2){border-top-color:var(--yellow)}
+.steps li:nth-child(3){border-top-color:var(--orange)}
+.steps li:nth-child(4){border-top-color:var(--green)}
+.steps li::before{content:counter(s);font-family:Karantina,Arial,sans-serif;font-weight:700;font-size:4rem;line-height:.9;display:block;margin-bottom:8px}
+.steps h3{font-size:2rem;margin-bottom:8px}
 .steps p{margin:0;color:var(--muted);font-size:1rem}
 
-.contact{background:var(--ink);color:var(--ground);border-radius:24px;padding:56px 40px;text-align:center}
-.contact h2{font-size:clamp(2rem,5vw,3rem);margin-bottom:12px}
-.contact p{color:var(--ground);opacity:.85;margin:0 auto 28px;max-width:44ch}
+/* contact */
+.contact{background:#0E1A2B;color:#EEF1F6;border-radius:36px;padding:72px 40px;text-align:center}
+.contact h2{font-size:clamp(3.4rem,10vw,7rem);margin-bottom:16px}
+.contact p{margin:0 auto 30px;max-width:40ch;opacity:.88;font-size:1.15rem}
 .contact .actions{justify-content:center}
-.contact .btn-ghost{border-color:var(--ground);color:var(--ground)}
-.contact .btn-ghost:hover{background:var(--ground);color:var(--ink)}
+.contact .btn-ghost{border-color:#EEF1F6;color:#EEF1F6}
+.contact .btn-ghost:hover{background:#EEF1F6;color:#0E1A2B}
 
-footer{padding:32px 0 48px;color:var(--muted);font-size:.95rem;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer{padding-block:36px 56px;color:var(--muted);font-size:.95rem}
 
 /* chat */
-.chat-fab{position:fixed;left:20px;bottom:20px;z-index:20;display:none;align-items:center;gap:8px;min-height:52px;padding:0 20px;border-radius:999px;border:none;background:var(--ink);color:var(--ground);font:600 1rem "IBM Plex Sans Hebrew",Arial,sans-serif;cursor:pointer}
+.chat-fab{position:fixed;left:20px;bottom:20px;z-index:20;display:none;align-items:center;gap:8px;min-height:52px;padding:0 20px;border-radius:999px;border:none;background:var(--ink);color:var(--ground);font:600 1rem "IBM Plex Sans Hebrew",Arial,sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25)}
 .chat-fab.ready{display:inline-flex}
-.chat-panel{position:fixed;left:20px;bottom:84px;z-index:21;width:min(360px,calc(100vw - 40px));height:min(480px,calc(100vh - 120px));background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:18px;display:none;flex-direction:column;overflow:hidden}
+.chat-panel{position:fixed;left:20px;bottom:84px;z-index:21;width:min(360px,calc(100vw - 40px));height:min(480px,calc(100vh - 120px));background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:18px;display:none;flex-direction:column;overflow:hidden;padding:0}
 .chat-panel.open{display:flex}
 .chat-head{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line)}
-.chat-head h2{font-size:1.1rem}
+.chat-head h2{font-size:1.9rem}
 .chat-close{width:40px;height:40px;border:none;background:none;color:var(--ink);font-size:1.4rem;cursor:pointer;border-radius:8px}
 .chat-log{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
 .msg{max-width:85%;padding:10px 14px;border-radius:14px;line-height:1.5;font-size:.98rem;white-space:pre-wrap;word-wrap:break-word}
 .msg.bot{align-self:flex-start;background:var(--ground)}
-.msg.me{align-self:flex-end;background:var(--link);color:#fff}
+.msg.me{align-self:flex-end;background:var(--blue);color:#fff}
 .msg.err{align-self:flex-start;background:transparent;border:1px solid var(--line);color:var(--muted)}
 .chat-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
 .chat-form label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
@@ -149,18 +185,74 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:.95rem;display:flex;just
 .chat-form button{height:44px;padding:0 16px;border-radius:10px;border:none;background:var(--ink);color:var(--ground);font:600 1rem inherit;cursor:pointer}
 .chat-form button:disabled{opacity:.5;cursor:default}
 
-@media (max-width:760px){
+
+/* packets, LEDs */
+.panel .led{fill:#27C26A;animation:blink 2.4s steps(1) infinite}
+.panel .led:nth-of-type(3n){fill:#FFC21A;animation-delay:.6s}
+.panel .led:nth-of-type(3n+1){fill:#FF6A2B;animation-delay:1.3s}
+.panel .led:nth-of-type(5n){animation-delay:.2s;animation-duration:3.1s}
+@keyframes blink{0%{opacity:1}45%{opacity:.15}60%{opacity:1}}
+.n-led{fill:#27C26A;animation:blink 1.8s steps(1) infinite}
+.n-led.l2{fill:#FFC21A;animation-delay:.7s}
+
+/* stack band */
+.stack{margin-top:56px;overflow:hidden;display:flex;border-block:3px solid var(--ink);padding-block:14px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.stack-track{flex:0 0 auto;min-width:100%;display:flex;justify-content:space-around;gap:32px;list-style:none;margin:0;padding:0 16px;animation:marq 28s linear infinite}
+.stack-track li{font-family:Karantina,Arial,sans-serif;font-weight:700;font-size:2.2rem;line-height:1;white-space:nowrap}
+.stack-track li:nth-child(4n+1){color:var(--blue)}
+.stack-track li:nth-child(4n+2){color:var(--orange)}
+.stack-track li:nth-child(4n+3){color:var(--ink)}
+.stack-track li:nth-child(4n){color:var(--green)}
+@keyframes marq{to{transform:translateX(calc(100% + 32px))}}
+
+/* network section */
+.net{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
+.topo{width:100%;height:auto;display:block}
+.topo .tl path{fill:none;stroke:var(--line);stroke-width:6;stroke-linecap:round}
+.topo .n-router{fill:var(--ink)}
+.topo .n-switch{fill:var(--port)}
+.topo .n-ant{stroke:var(--ink);stroke-width:5;stroke-linecap:round;fill:none}
+.topo .n-pc rect{fill:var(--surface);stroke:var(--ink);stroke-width:3}
+.topo .n-pc path{stroke:var(--ink);stroke-width:4;stroke-linecap:round;fill:none}
+.topo .n-label{fill:var(--ink);font-family:"IBM Plex Sans Hebrew",Arial,sans-serif;font-weight:600;font-size:18px}
+.net-copy .intro{font-size:1.4rem;font-weight:500;line-height:1.55;margin:0 0 20px;max-width:26em}
+.net-copy ul{margin:0;padding:0;list-style:none}
+.net-copy li{padding:12px 0;border-top:1px solid var(--line);display:flex;gap:12px;align-items:baseline}
+.net-copy li::before{content:"";flex:none;width:12px;height:12px;border-radius:3px;background:var(--blue);transform:translateY(1px)}
+.net-copy li:nth-child(2)::before{background:var(--yellow)}
+.net-copy li:nth-child(3)::before{background:var(--orange)}
+.net-copy li:nth-child(4)::before{background:var(--green)}
+.service li{transition:padding .2s ease}
+@media (hover:hover){.service li:hover{padding-inline-start:12px}}
+@media (max-width:820px){.net{grid-template-columns:1fr;gap:28px}}
+@media (prefers-reduced-motion: reduce){
+  .stack-track{animation:none}
+  .panel .led,.n-led{animation:none}
+}
+@media (max-width:820px){
+  section{padding-block:64px 0}
   .services{grid-template-columns:1fr}
-  .service:first-child{padding-left:0;border-left:none;border-bottom:1px solid var(--line);padding-bottom:24px}
-  .service:last-child{padding-right:0}
-  .work{grid-template-columns:1fr;padding:24px}
+  .service{padding:32px 24px 20px}
   .about{grid-template-columns:1fr;gap:24px}
+  .work{grid-template-columns:1fr}
   .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .contact{padding:40px 20px}
-  section{padding:56px 0}
+  .contact{padding:56px 22px}
+  .top nav{gap:18px}
+}
+.legend{display:none}
+@media (max-width:600px){
+  .panel .tag-label{display:none}
+  .legend{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:16px 0 0;padding:0}
+  .legend li{padding:4px 14px;border-radius:10px;font-weight:600;font-size:.95rem;color:#0E1A2B}
+  .legend li:nth-child(1){background:var(--blue);color:#fff}
+  .legend li:nth-child(2){background:var(--yellow)}
+  .legend li:nth-child(3){background:var(--orange)}
+  .legend li:nth-child(4){background:var(--green)}
 }
 @media (max-width:440px){
   .steps{grid-template-columns:1fr}
+  .wrap{padding-inline:18px}
 }
 </style>
 </head>
@@ -169,9 +261,10 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:.95rem;display:flex;just
 
 <div class="wrap">
   <header class="top">
-    <a class="brand" href="#">דניאל</a>
+    <a class="brand" href="#main">דניאל</a>
     <nav aria-label="ניווט ראשי">
       <a href="#services">שירותים</a>
+      <a href="#network">רשתות</a>
       <a href="#about">עליי</a>
       <a href="#work">עבודות</a>
       <a href="#how">איך עובדים</a>
@@ -182,9 +275,9 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:.95rem;display:flex;just
 
 <main id="main">
   <div class="wrap">
-    <section class="hero" aria-labelledby="hero-title">
-      <h1 id="hero-title">אני דניאל. בונה אתרים לעסקים.</h1>
-      <p>אתרים, חנויות ודפי נחיתה שעובדים טוב בטלפון, ועוזרי AI ואוטומציות שחוסכים לעסק זמן.</p>
+    <section class="hero" aria-labelledby="hero-title" style="padding-top:36px">
+      <h1 id="hero-title"><span class="big">אני דניאל.</span><span class="sub">בונה אתרים לעסקים.</span></h1>
+      <p class="lead">אתרים, חנויות ודפי נחיתה שעובדים טוב בטלפון, ועוזרי AI ואוטומציות שחוסכים לעסק זמן.</p>
       <div class="actions">
         <a class="btn btn-wa" href="https://wa.me/972524219596?text=%D7%94%D7%99%D7%99%20%D7%93%D7%A0%D7%99%D7%90%D7%9C%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg>
@@ -193,30 +286,64 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:.95rem;display:flex;just
         <a class="btn btn-ghost" href="#services">מה אני עושה</a>
       </div>
 
-      <svg class="topology" viewBox="0 0 1000 200" role="img" aria-label="איור: האתר, עוזר ה-AI והלקוחות מחוברים בקו אחד">
-        <path class="cable" d="M120 110 C 260 110, 300 60, 440 60 S 640 150, 760 120 S 860 90, 900 100"/>
-        <g transform="translate(60 60)">
-          <rect class="node" width="120" height="100" rx="14"/>
-          <path class="glyph" d="M22 24h76M22 44h50M22 62h60M22 80h36"/>
-        </g>
-        <text x="120" y="190" text-anchor="middle">האתר</text>
-        <g transform="translate(400 20)">
-          <rect class="node" width="90" height="80" rx="14"/>
-          <path class="glyph" d="M20 20h50v32H40l-12 10v-10h-8z"/>
-        </g>
-        <text x="445" y="130" text-anchor="middle">עוזר AI</text>
-        <g transform="translate(860 60)">
-          <rect class="node" width="80" height="100" rx="16"/>
-          <path class="glyph" d="M30 82h20"/>
-        </g>
-        <text x="900" y="190" text-anchor="middle">הלקוחות</text>
-      </svg>
+      <div class="panel-wrap">
+        <svg class="panel" viewBox="0 0 1000 300" role="img" aria-label="איור: ארבעה כבלים צבעוניים מחוברים ללוח אחד: אתר, חנות, עוזר AI ואוטומציה">
+          <!-- cables: each runs from its tag down into a port -->
+          <path class="cable c1" d="M825 78 C 825 150, 739 140, 739 205"/>
+          <path class="cable c2" d="M605 78 C 605 150, 529 140, 529 205"/>
+          <path class="cable c3" d="M385 78 C 385 150, 459 140, 459 205"/>
+          <path class="cable c4" d="M165 78 C 165 150, 249 140, 249 205"/>
+          <!-- tags -->
+          <g class="tag t1"><rect x="750" y="22" width="150" height="56" rx="12" fill="#1F4FFF"/><text class="tag-label" x="825" y="58" fill="#FFFFFF">אתר</text></g>
+          <g class="tag t2"><rect x="530" y="22" width="150" height="56" rx="12" fill="#FFC21A"/><text class="tag-label" x="605" y="58" fill="#0E1A2B">חנות</text></g>
+          <g class="tag t3"><rect x="310" y="22" width="150" height="56" rx="12" fill="#FF6A2B"/><text class="tag-label" x="385" y="58" fill="#0E1A2B">עוזר AI</text></g>
+          <g class="tag t4"><rect x="90" y="22" width="150" height="56" rx="12" fill="#27C26A"/><text class="tag-label" x="165" y="58" fill="#0E1A2B">אוטומציה</text></g>
+          <!-- rack -->
+          <rect class="rack" x="30" y="205" width="940" height="80" rx="14"/>
+          <circle class="screw" cx="52" cy="245" r="5"/><circle class="screw" cx="948" cy="245" r="5"/>
+          <g>
+            <rect class="hole" x="85" y="225" width="48" height="40" rx="6"/>
+            <rect class="hole" x="155" y="225" width="48" height="40" rx="6"/>
+            <rect class="hole" x="225" y="225" width="48" height="40" rx="6"/>
+            <rect class="hole" x="295" y="225" width="48" height="40" rx="6"/>
+            <rect class="hole" x="365" y="225" width="48" height="40" rx="6"/>
+            <rect class="hole" x="435" y="225" width="48" height="40" rx="6"/>
+            <rect class="hole" x="505" y="225" width="48" height="40" rx="6"/>
+            <rect class="hole" x="575" y="225" width="48" height="40" rx="6"/>
+            <rect class="hole" x="645" y="225" width="48" height="40" rx="6"/>
+            <rect class="hole" x="715" y="225" width="48" height="40" rx="6"/>
+            <rect class="hole" x="785" y="225" width="48" height="40" rx="6"/>
+            <rect class="hole" x="855" y="225" width="48" height="40" rx="6"/>
+          </g>
+          <!-- leds -->
+          <circle class="led" cx="109" cy="214" r="3.2"/><circle class="led" cx="179" cy="214" r="3.2"/><circle class="led" cx="249" cy="214" r="3.2"/><circle class="led" cx="319" cy="214" r="3.2"/><circle class="led" cx="389" cy="214" r="3.2"/><circle class="led" cx="459" cy="214" r="3.2"/><circle class="led" cx="529" cy="214" r="3.2"/><circle class="led" cx="599" cy="214" r="3.2"/><circle class="led" cx="669" cy="214" r="3.2"/><circle class="led" cx="739" cy="214" r="3.2"/><circle class="led" cx="809" cy="214" r="3.2"/><circle class="led" cx="879" cy="214" r="3.2"/>
+          <!-- plugs -->
+          <rect class="plug p1" x="717" y="196" width="44" height="52" rx="8"/>
+          <rect class="plug p2" x="507" y="196" width="44" height="52" rx="8"/>
+          <rect class="plug p3" x="437" y="196" width="44" height="52" rx="8"/>
+          <rect class="plug p4" x="227" y="196" width="44" height="52" rx="8"/>
+          <circle class="packet" opacity="0" r="6" fill="#FFFFFF" stroke="#0E1A2B" stroke-width="2"><animateMotion dur="2.6s" begin="2.2s" repeatCount="indefinite" path="M825 78 C 825 150, 739 140, 739 205"/><set attributeName="opacity" to="1" begin="2.2s" fill="freeze"/></circle>
+          <circle class="packet" opacity="0" r="6" fill="#FFFFFF" stroke="#0E1A2B" stroke-width="2"><animateMotion dur="3.0s" begin="2.9000000000000004s" repeatCount="indefinite" path="M605 78 C 605 150, 529 140, 529 205"/><set attributeName="opacity" to="1" begin="2.9000000000000004s" fill="freeze"/></circle>
+          <circle class="packet" opacity="0" r="6" fill="#FFFFFF" stroke="#0E1A2B" stroke-width="2"><animateMotion dur="2.8s" begin="3.5s" repeatCount="indefinite" path="M385 78 C 385 150, 459 140, 459 205"/><set attributeName="opacity" to="1" begin="3.5s" fill="freeze"/></circle>
+          <circle class="packet" opacity="0" r="6" fill="#FFFFFF" stroke="#0E1A2B" stroke-width="2"><animateMotion dur="3.2s" begin="2.6s" repeatCount="indefinite" path="M165 78 C 165 150, 249 140, 249 205"/><set attributeName="opacity" to="1" begin="2.6s" fill="freeze"/></circle>
+        </svg>
+        <ul class="legend" aria-hidden="true"><li>אתר</li><li>חנות</li><li>עוזר AI</li><li>אוטומציה</li></ul>
+      </div>
     </section>
+
+    <div class="stack" aria-label="כלים וטכנולוגיות שאני עובד איתם">
+      <ul class="stack-track">
+        <li>Shopify</li><li>WordPress</li><li>Make</li><li>WhatsApp</li><li>Telegram</li><li>Linux</li><li>Windows</li><li>רשתות</li><li>חומרה</li>
+      </ul>
+      <ul class="stack-track" aria-hidden="true">
+        <li>Shopify</li><li>WordPress</li><li>Make</li><li>WhatsApp</li><li>Telegram</li><li>Linux</li><li>Windows</li><li>רשתות</li><li>חומרה</li>
+      </ul>
+    </div>
 
     <section id="services" aria-labelledby="services-title">
       <h2 id="services-title" class="section-title">מה אני עושה</h2>
       <div class="services">
-        <div class="service">
+        <div class="service web">
           <h3>אתרים</h3>
           <p class="lead">לעסקים קטנים שרוצים להיראות טוב ולמכור אונליין.</p>
           <ul>
@@ -226,7 +353,7 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:.95rem;display:flex;just
             <li><strong>נגישות ועברית</strong><span>אתרים שבנויים נכון לימין-לשמאל ולפי דרישות הנגישות.</span></li>
           </ul>
         </div>
-        <div class="service">
+        <div class="service ai">
           <h3>AI ואוטומציות</h3>
           <p class="lead">כלים שעושים חלק מהעבודה במקומכם.</p>
           <ul>
@@ -238,13 +365,53 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:.95rem;display:flex;just
       </div>
     </section>
 
+    <section id="network" aria-labelledby="network-title">
+      <h2 id="network-title" class="section-title">רשתות ומחשבים</h2>
+      <div class="net">
+        <svg class="topo" viewBox="0 0 520 360" role="img" aria-label="איור: ראוטר מחובר לסוויץ' ומשם לארבע עמדות מחשב">
+          <g class="tl">
+            <path id="l0" d="M260 78 V150"/>
+            <path id="l1" d="M260 190 C 260 240, 70 220, 70 280"/>
+            <path id="l2" d="M260 190 C 260 240, 190 230, 190 280"/>
+            <path id="l3" d="M260 190 C 260 240, 330 230, 330 280"/>
+            <path id="l4" d="M260 190 C 260 240, 450 220, 450 280"/>
+          </g>
+          <g class="tn">
+            <rect x="190" y="26" width="140" height="52" rx="12" class="n-router"/>
+            <circle cx="214" cy="52" r="4" class="n-led"/><circle cx="232" cy="52" r="4" class="n-led l2"/>
+            <path d="M286 44v16M298 38v28" class="n-ant"/>
+            <rect x="170" y="150" width="180" height="40" rx="10" class="n-switch"/>
+            <circle cx="200" cy="170" r="4" class="n-led"/><circle cx="224" cy="170" r="4" class="n-led l2"/><circle cx="248" cy="170" r="4" class="n-led"/><circle cx="272" cy="170" r="4" class="n-led l2"/><circle cx="296" cy="170" r="4" class="n-led"/><circle cx="320" cy="170" r="4" class="n-led l2"/>
+            <g class="n-pc"><rect x="30" y="280" width="80" height="50" rx="8"/><path d="M52 345h36"/></g>
+            <g class="n-pc"><rect x="150" y="280" width="80" height="50" rx="8"/><path d="M172 345h36"/></g>
+            <g class="n-pc"><rect x="290" y="280" width="80" height="50" rx="8"/><path d="M312 345h36"/></g>
+            <g class="n-pc"><rect x="410" y="280" width="80" height="50" rx="8"/><path d="M432 345h36"/></g>
+          </g>
+          <text x="420" y="58" text-anchor="middle" class="n-label">ראוטר</text>
+          <text x="435" y="176" text-anchor="middle" class="n-label">סוויץ'</text>
+          <circle class="packet" opacity="0" r="5" fill="#FFC21A" stroke="#0E1A2B" stroke-width="2"><animateMotion dur="1.4s" repeatCount="indefinite" path="M260 78 V150"/><set attributeName="opacity" to="1" begin="0s" fill="freeze"/></circle>
+          <circle class="packet" opacity="0" r="5" fill="#1F4FFF" stroke="#0E1A2B" stroke-width="2"><animateMotion dur="2.4s" begin=".3s" repeatCount="indefinite" path="M260 190 C 260 240, 70 220, 70 280"/><set attributeName="opacity" to="1" begin=".3s" fill="freeze"/></circle>
+          <circle class="packet" opacity="0" r="5" fill="#FF6A2B" stroke="#0E1A2B" stroke-width="2"><animateMotion dur="2.0s" begin=".9s" repeatCount="indefinite" path="M260 190 C 260 240, 330 230, 330 280"/><set attributeName="opacity" to="1" begin=".9s" fill="freeze"/></circle>
+          <circle class="packet" opacity="0" r="5" fill="#27C26A" stroke="#0E1A2B" stroke-width="2"><animateMotion dur="2.6s" begin="1.4s" repeatCount="indefinite" path="M260 190 C 260 240, 450 220, 450 280"/><set attributeName="opacity" to="1" begin="1.4s" fill="freeze"/></circle>
+        </svg>
+        <div class="net-copy">
+          <p class="intro">יש לי ידע מעשי ברשתות ובמחשבים: מסוויצ'ים והרשאות ועד הרכבה של מחשב מאפס. אני מכיר את מה שהאתר והעסק רצים עליו, ולא רק את מה שרואים על המסך.</p>
+          <ul>
+            <li>עבודה עם סוויצ'ים רבים והגדרת עמדות ברשת</li>
+            <li>הקצאת כתובות IP וחיבור מחשבים לרשת</li>
+            <li>איפוס מחשבים מעמדה מרכזית אחת, והגדרת הרשאות גישה לפי רמות: לאיזה מידע מותר לכל מחשב לגשת, ולאיזה לא</li>
+            <li>הרכבה ושדרוג של מחשבים</li>
+            <li>לומד סייבר ואבטחת מידע, כולל Linux ו-Windows</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <section id="about" aria-labelledby="about-title">
       <h2 id="about-title" class="section-title">קצת עליי</h2>
       <div class="about">
-        <p class="intro">התחלתי ברשתות בצבא, ומשם הגעתי לבניית אתרים ולכלי AI. היום אני בונה לעסקים, ולומד סייבר כדי שכל מה שאני בונה יהיה גם מאובטח.</p>
+        <p class="intro">התחלתי ברשתות ובמחשבים, ומשם הגעתי לבניית אתרים ולכלי AI. היום אני בונה לעסקים, ולומד סייבר כדי שכל מה שאני בונה יהיה גם מאובטח.</p>
         <dl>
-          <dt>שירות צבאי בתחום רשתות ותקשורת</dt>
-          <dd>הגדרה ותחזוקה של עמדות מחשב ברשת, כולל הקצאת כתובות IP וחיבור מחשבים לרשת.</dd>
           <dt>לימודי אבטחת מידע</dt>
           <dd>לומד באופן עצמאי יסודות סייבר, מערכות הפעלה ורשתות, כולל Linux ו-Windows.</dd>
           <dt>אוטומציות ועוזרי AI</dt>
@@ -258,28 +425,32 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:.95rem;display:flex;just
     <section id="work" aria-labelledby="work-title">
       <h2 id="work-title" class="section-title">עבודות</h2>
       <div class="works">
-      <article class="work">
-        <div>
-          <span class="status live">פועל</span>
-          <h3>מערכת אוטומטית להפקת סרטונים</h3>
-          <p>מערכת שמוצאת נושאים חמים, כותבת תסריט עם AI, מפיקה סרטון עם אווטאר דיגיטלי, בודקת את האיכות ומפרסמת ביוטיוב ובטיקטוק. הכול אוטומטי, עם אישור בטלגרם בשלבים החשובים.</p>
-          <ol class="flow" aria-label="שלבי המערכת">
-            <li><span>רעיון</span></li>
-            <li><span>תסריט</span></li>
-            <li><span>בדיקה</span></li>
-            <li><span>וידאו</span></li>
-            <li><span>פרסום</span></li>
-          </ol>
-          <p class="tools">נבנתה עם Make, סוכני AI, HeyGen ו-Telegram.</p>
-        </div>
-      </article>
-      <article class="work">
-        <div>
-          <span class="status">בעבודה עכשיו</span>
-          <h3>חנות מקוונת להדפסה בהתאמה אישית</h3>
-          <p>חנות לחולצות, ספלים ומוצרים מודפסים, עם תצוגה מקדימה של העיצוב על המוצר, סליקה מאובטחת ונגישות מלאה.</p>
-        </div>
-      </article>
+        <article class="work">
+          <div class="work-head">
+            <span class="status live">פועל</span>
+            <h3>ערוץ סרטונים שמנהל את עצמו</h3>
+          </div>
+          <div class="work-body">
+            <p>מערכת שבוחרת נושא, כותבת תסריט עם AI, מפיקה סרטון קצר עם קריינות ומפרסמת אותו ביוטיוב, בטיקטוק ובטלגרם, שלוש פעמים ביום. כל בוקר מגיע אליי דוח בטלגרם, ואם משהו נשבר מגיעה התראה.</p>
+            <ol class="flow" aria-label="שלבי המערכת">
+              <li><span>נושא</span></li>
+              <li><span>תסריט</span></li>
+              <li><span>סרטון</span></li>
+              <li><span>פרסום</span></li>
+              <li><span>דוח יומי</span></li>
+            </ol>
+            <p class="tools">נבנתה עם Make, GitHub Actions, AI וטלגרם.</p>
+          </div>
+        </article>
+        <article class="work">
+          <div class="work-head">
+            <span class="status">בניתי לבד</span>
+            <h3>חנות דרופשיפינג ב-Shopify</h3>
+          </div>
+          <div class="work-body">
+            <p>חנות בעברית שבניתי מאפס לבד: עיצוב, העלאת מוצרים, סליקה ומשלוחים. את כל מה שצריך כדי שחנות תעבוד למדתי בעבודה אמיתית, וזה הניסיון שאני מביא ללקוחות.</p>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -333,6 +504,11 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:.95rem;display:flex;just
   </form>
 </section>
 
+<script>
+(function(){
+  try{ if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { document.querySelectorAll("animateMotion").forEach(function(a){ a.parentNode.remove(); }); } }catch(e){}
+})();
+</script>
 <script>
 (function(){
   // הכתובת של ה-Worker שלך ב-Cloudflare. עד שתמלא אותה, כפתור הצ'אט לא יופיע.
